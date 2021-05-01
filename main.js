@@ -1,11 +1,15 @@
 const args = process.argv.slice(2);
-console.log("These are the given args: " + args);
 
-if (args.length > 0) {
-	console.log(num_to_word(parseInt(args[0])));
+if (args.length == 0) {
+	console.log("No numbers to wordify");
 }
 else {
-	console.log("No numbers to wordify");
+	var i;
+	var s = num_to_word(parseInt(args[0]));
+	for (i = 1; i < args.length; i++) {
+		s = s.concat("," + num_to_word(parseInt(args[i])));
+	}
+	console.log(s);
 }
 
 
@@ -13,7 +17,6 @@ function num_to_word(n) {
 	var words = "";
 	while (n > 0) {
 		var single_digit = Math.floor(n % 10);
-		console.log("single_digit: " + single_digit + ", n: " + n);
 		switch (single_digit) {
 			case 0:
 				words = "Zero".concat(words);
